@@ -1,2 +1,70 @@
 main {
+  ::selection {
+    background-color: var(--orange);
+  }
+
+  .heading {
+    text-align: center;
+    color: var(--orange);
+    margin: 2rem 0;
+  }
+
+  .signin_form {
+    background-color: var(--light-black);
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+
+    &_field {
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        font: inherit;
+        font-size: 1.6rem;
+        height: 3.5rem;
+        padding: 0 0.5rem;
+        border: 2px solid var(--orange);
+        border-radius: 3px;
+
+        &:focus {
+          outline: 3px solid rgba(var(--orange-rgb), 0.5);
+        }
+      }
+    }
+
+    button {
+      font: inherit;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background-color: transparent;
+      color: var(--white);
+      border: 2px solid var(--orange);
+      padding: 0.8rem 1.8rem;
+      display: block;
+      margin: 0 auto;
+      transition: all 200ms ease-in-out;
+
+      @media screen and (min-width: 600px) {
+        cursor: pointer;
+      }
+
+      &:hover {
+        @media screen and (min-width: 600px) {
+          background-color: var(--orange);
+        }
+      }
+
+      &:active {
+        transform: scale(1.05);
+      }
+    }
+  }
 }

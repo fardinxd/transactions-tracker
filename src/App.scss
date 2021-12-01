@@ -4,8 +4,11 @@
 /* CSS Variables */
 :root {
   --orange: #fa8142;
+  --orange-rgb: 250, 129, 66;
   --pink: #ff4088;
+  --pink-rgb: 255, 64, 136;
   --purple: #9166cc;
+  --purple-rgb: 145, 102, 204;
   --white: #fff;
   --gray: #dddcdc;
   --black: #12181b;
@@ -50,30 +53,6 @@ a {
 img {
   max-width: 100%;
   height: auto;
-}
-
-button {
-  font: inherit;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background-color: transparent;
-  color: var(--white);
-  border: 2px solid var(--orange);
-  outline: none;
-  padding: 0.8rem 1.8rem;
-  transition: all 200ms ease-in-out;
-
-  @media screen and (min-width: 600px) {
-    cursor: pointer;
-  }
-
-  &:hover {
-    background-color: var(--orange);
-  }
-
-  &:active {
-    transform: scale(1.05);
-  }
 }
 
 .container {
