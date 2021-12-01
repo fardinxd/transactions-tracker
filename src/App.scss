@@ -1,0 +1,84 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+/* CSS Variables */
+:root {
+  --green: #09c372;
+  --purple: #9166cc;
+  --orange: #fa8142;
+  --pink: #ff4088;
+  --white: #fff;
+  --gray: #dddcdc;
+  --black: #12181b;
+  --light-black: #3f4447;
+}
+
+/* Global Styling */
+::selection {
+  background-color: var(--orange);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: transparent;
+  color: var(--white);
+  border: 2px solid var(--orange);
+  outline: none;
+  padding: 0.8rem 1.8rem;
+  transition: all 200ms ease-in-out;
+
+  @media screen and (min-width: 600px) {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: var(--orange);
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+}
+
+.container {
+  width: 95%;
+  max-width: 150rem;
+  margin: 0 auto;
+}
