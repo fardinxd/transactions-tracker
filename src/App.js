@@ -10,10 +10,14 @@ import Signin from "./pages/Signin/Signin";
 import Signup from "./pages/Signup/Signup";
 import FourZeroFour from "./pages/FourZeroFour/FourZeroFour";
 
+// Components \\
+import Header from "./components/Header/Header";
+
 const App = () => {
   // JSX \\
   return (
     <Fragment>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
