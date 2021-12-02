@@ -1,18 +1,25 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Styles \\
 import styles from "./Signup.module.scss";
 
+// Custom Hooks \\
+import { useSignup } from "../../hooks/useSignup";
+
 const Signup = () => {
   // States \\
-  const [name, setName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // On Form Submit \\
+  // Signup Hook \\
+  const { isPending, error, signup } = useSignup();
+
+  // On Signup Form Submit \\
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log({ name, email, password });
+    signup(displayName, email, password);
   };
 
   // JSX \\
@@ -22,12 +29,12 @@ const Signup = () => {
 
       <form className={styles.signup_form} onSubmit={submitHandler}>
         <div className={styles.signup_form_field}>
-          <label htmlFor="name">DIsplay Name</label>
+          <label htmlFor="display-name">DIsplay Name</label>
           <input
-            id="name"
+            id="display-name"
             type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
             required
           />
         </div>
@@ -54,8 +61,14 @@ const Signup = () => {
           />
         </div>
 
-        <button>Signup</button>
+        <button className="btn">{!isPending ? "Signup" : "Loading..."}</button>
+
+        {error && <p className="error">{error}</p>}
       </form>
+
+      <p className={styles.paragraph}>
+        Already Have an Account? <Link to="/signin">Signin</Link>
+      </p>
     </main>
   );
 };

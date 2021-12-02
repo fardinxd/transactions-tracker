@@ -5,10 +5,6 @@
 :root {
   --orange: #fa8142;
   --orange-rgb: 250, 129, 66;
-  --pink: #ff4088;
-  --pink-rgb: 255, 64, 136;
-  --purple: #9166cc;
-  --purple-rgb: 145, 102, 204;
   --white: #fff;
   --gray: #dddcdc;
   --black: #12181b;
@@ -59,4 +55,38 @@ img {
   width: 95%;
   max-width: 150rem;
   margin: 0 auto;
+}
+
+.btn {
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: transparent;
+  color: var(--white);
+  border: 2px solid var(--orange);
+  padding: 0.6rem 1.8rem;
+  display: block;
+  transition: all 200ms ease-in-out;
+
+  @media screen and (min-width: 600px) {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.3rem;
+    padding: 0.4rem 1.6rem;
+    cursor: default;
+  }
+
+  &:hover {
+    @media screen and (min-width: 600px) {
+      background-color: var(--orange);
+    }
+  }
+}
+
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 2.5rem 0;
 }

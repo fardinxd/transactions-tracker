@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Styles \\
 import "./App.scss";
+
+// Custom Hooks \\
+import { useAuthContext } from "./hooks/useAuthContext";
 
 // Pages \\
 import Home from "./pages/Home/Home";
@@ -14,16 +17,35 @@ import FourZeroFour from "./pages/FourZeroFour/FourZeroFour";
 import Header from "./components/Header/Header";
 
 const App = () => {
+  // Auth Context \\
+  const { currentUser, authIsReady } = useAuthContext();
+
   // JSX \\
   return (
     <Fragment>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/*" element={<FourZeroFour />} />
-      </Routes>
+      {authIsReady && (
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={currentUser ? <Home /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/signin"
+              element={!currentUser ? <Signin /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/signup"
+              element={!currentUser ? <Signup /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/*"
+              element={currentUser ? <FourZeroFour /> : <Navigate to="/" />}
+            />
+          </Routes>
+        </BrowserRouter>
+      )}
     </Fragment>
   );
 };

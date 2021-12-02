@@ -31,36 +31,24 @@ main {
         border-radius: 3px;
 
         &:focus {
-          outline: 3px solid rgba(var(--orange-rgb), 0.5);
+          outline: 4px solid rgba(var(--orange-rgb), 0.5);
         }
       }
     }
 
     button {
-      font: inherit;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background-color: transparent;
-      color: var(--white);
-      border: 2px solid var(--orange);
-      padding: 0.8rem 1.8rem;
-      display: block;
       margin: 0 auto;
-      transition: all 200ms ease-in-out;
+    }
+  }
 
-      @media screen and (min-width: 600px) {
-        cursor: pointer;
-      }
+  .paragraph {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    margin: 3rem 0;
 
-      &:hover {
-        @media screen and (min-width: 600px) {
-          background-color: var(--orange);
-        }
-      }
-
-      &:active {
-        transform: scale(1.05);
-      }
+    a {
+      color: var(--orange);
     }
   }
 }

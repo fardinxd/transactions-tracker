@@ -1,17 +1,24 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Styles \\
 import styles from "./Signin.module.scss";
+
+// Custom Hooks \\
+import { useSignin } from "../../hooks/useSignin";
 
 const Signin = () => {
   // States \\
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // On Form Submit \\
+  // Signin Hook \\
+  const { isPending, error, signin } = useSignin();
+
+  // On Signin Form Submit \\
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log({ email, password });
+    signin(email, password);
   };
 
   // JSX \\
@@ -42,8 +49,14 @@ const Signin = () => {
           />
         </div>
 
-        <button>Signin</button>
+        <button className="btn">{!isPending ? "Signin" : "Loading..."}</button>
+
+        {error && <p className="error">{error}</p>}
       </form>
+
+      <p className={styles.paragraph}>
+        New to Finance Tracker? <Link to="/signup">Signup</Link>
+      </p>
     </main>
   );
 };
