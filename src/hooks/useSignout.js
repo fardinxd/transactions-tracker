@@ -10,7 +10,7 @@ export const useSignout = () => {
   // Signout Function \\
   const signout = async () => {
     // Sign The User Out \\
-    projectAuth.signOut();
+    await projectAuth.signOut();
 
     // Dispatch Logout Action \\
     dispatch({ type: "SIGNOUT" });
