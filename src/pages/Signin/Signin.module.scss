@@ -20,6 +20,10 @@ main {
         font-size: 1.6rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
+
+        @media screen and (max-width: 600px) {
+          font-size: 1.3rem;
+        }
       }
 
       input {

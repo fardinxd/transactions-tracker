@@ -1,27 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Styles and Icons \\
 import styles from "./TransactionForm.module.scss";
 import { HiPlus } from "react-icons/hi";
 
+// Custom Hooks \\
+import { useFirestore } from "../../hooks/useFirestore";
+
 // Components \\
 import Modal from "./Modal";
 
-const TransactionForm = () => {
+const TransactionForm = ({ uid }) => {
   // States \\
   const [show, setShow] = useState(false);
   const [transactionName, setTransactionName] = useState("");
   const [transactionAmount, setTransactionAmount] = useState("");
 
-  // On Form Submit \\
+  // useFirestore Hook \\
+  const { response, addDocument } = useFirestore("transactions");
+
+  // On Transaction Form Submit \\
   const submitHandler = (event) => {
     event.preventDefault();
 
-    // Reset Form Fields \\
-    setTransactionName("");
-    setTransactionAmount("");
-    setShow(false);
+    // Form Validation \\
+    if (transactionName.trim().length < 3) {
+      alert("Transaction name should be atleast 3 characters long");
+      return;
+    }
+
+    if (+transactionAmount < 1) {
+      alert("Transaction amount should be grater than 0");
+      return;
+    }
+
+    // Add Transaction To Firebase Transactions Collection \\
+    addDocument({ uid, transactionName, transactionAmount });
   };
+
+  // Reset Form Fields & Close Modal If Transaction Successfully Added \\
+  useEffect(() => {
+    if (response.success) {
+      setTransactionName("");
+      setTransactionAmount("");
+      setShow(false);
+    }
+  }, [response.success]);
 
   // JSX \\
   return (
@@ -66,7 +90,7 @@ const TransactionForm = () => {
               </div>
 
               <button className="btn" type="submit">
-                Add
+                {!response.isPending ? "Add" : "Adding..."}
               </button>
             </div>
           </form>
