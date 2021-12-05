@@ -10,7 +10,6 @@ export const useSignin = () => {
   // States \\
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
-  const [isCancelled, setIsCancelled] = useState(false);
 
   // Auth Context \\
   const { dispatch } = useAuthContext();
@@ -33,21 +32,13 @@ export const useSignin = () => {
       // Dispatch Signin Action \\
       dispatch({ type: "SIGNIN", payload: response.user });
 
-      if (!isCancelled) {
-        setIsPending(false);
-        setError(null);
-      }
+      setIsPending(false);
+      setError(null);
     } catch (error) {
-      if (!isCancelled) {
-        setIsPending(false);
-        setError(error.message);
-      }
+      setIsPending(false);
+      setError(error.message);
     }
   };
-
-  useEffect(() => {
-    return () => setIsCancelled(true);
-  }, []);
 
   return { isPending, error, signin };
 };
