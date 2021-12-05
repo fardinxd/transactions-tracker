@@ -1,0 +1,76 @@
+main {
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin: 2rem 0;
+
+    @media screen and (max-width: 600px) {
+      font-size: 1.4rem;
+    }
+  }
+
+  .transactions {
+    max-width: 70rem;
+    margin: 0 auto;
+
+    &_item {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: var(--light-black);
+      box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.4);
+      border-left: 5px solid var(--orange);
+      border-radius: 2px;
+      display: flex;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+
+      &_info {
+        max-width: 75%;
+        overflow: hidden;
+
+        h2 {
+          font-size: 1.8rem;
+          font-weight: 400;
+          overflow-wrap: break-word;
+
+          @media screen and (max-width: 600px) {
+            font-size: 1.6rem;
+          }
+        }
+
+        h3 {
+          color: var(--orange);
+          font-size: 1.5rem;
+          font-weight: 400;
+          letter-spacing: 1px;
+          margin-top: 1rem;
+        }
+      }
+
+      &_date {
+        font-size: 1.3rem;
+        min-width: max-content;
+        align-self: flex-end;
+
+        span:first-child {
+          margin-right: 1rem;
+        }
+      }
+
+      &_delete {
+        font-size: 2rem;
+        background-color: var(--orange);
+        border-radius: 2px;
+        box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.4);
+        padding: 0.5rem;
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
