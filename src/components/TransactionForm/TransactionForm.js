@@ -24,26 +24,22 @@ const TransactionForm = ({ uid }) => {
     event.preventDefault();
 
     // Form Validation \\
-    if (transactionName.trim().length < 3) {
-      alert("Transaction name should be atleast 3 characters long");
-      return;
-    }
-
-    if (+transactionAmount < 1) {
-      alert("Transaction amount should be grater than 0");
+    if (transactionName.trim().length < 3 || +transactionAmount < 1) {
+      alert("Transaction name or amount is invalid");
       return;
     }
 
     // Add Transaction To Firebase Transactions Collection \\
-    addDocument({ uid, transactionName, transactionAmount });
+    addDocument({ uid, name: transactionName, amount: transactionAmount });
   };
 
-  // Reset Form Fields & Close Modal If Transaction Successfully Added \\
+  // Reset Form Fields & Close Modal If Transaction Successfully Added To Transaction List \\
   useEffect(() => {
     if (response.success) {
       setTransactionName("");
       setTransactionAmount("");
       setShow(false);
+      window.scroll(0, 0);
     }
   }, [response.success]);
 
@@ -74,7 +70,7 @@ const TransactionForm = ({ uid }) => {
             </div>
 
             <div className={styles.transaction_form_field}>
-              <label htmlFor="transaction-amount">Transaction Amount</label>
+              <label htmlFor="transaction-amount">Transaction Amount ($)</label>
               <input
                 id="transaction-amount"
                 type="number"
