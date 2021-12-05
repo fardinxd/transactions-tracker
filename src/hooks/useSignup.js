@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Firebase Auth \\
 import { projectAuth } from "../firebase/config";
@@ -10,6 +10,7 @@ export const useSignup = () => {
   // States \\
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+  const [isCancelled, setIsCancelled] = useState(false);
 
   // Auth Context \\
   const { dispatch } = useAuthContext();
@@ -35,13 +36,21 @@ export const useSignup = () => {
       // Dispatch Signup Action \\
       dispatch({ type: "SIGNUP", payload: response.user });
 
-      setIsPending(false);
-      setError(null);
+      if (!isCancelled) {
+        setIsPending(false);
+        setError(null);
+      }
     } catch (error) {
-      setIsPending(false);
-      setError(error.message);
+      if (!isCancelled) {
+        setIsPending(false);
+        setError(error.message);
+      }
     }
   };
+
+  useEffect(() => {
+    return () => setIsCancelled(true);
+  }, []);
 
   return { isPending, error, signup };
 };
