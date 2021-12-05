@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect } from "react";
+import { useReducer } from "react";
 
 // Firebase Firestore & Timestamp \\
 import { projectFirestore, timestamp } from "../firebase/config";
@@ -16,6 +16,15 @@ const firestoreReducer = (state, action) => {
   if (action.type === "ADDED_DOCUMENT") {
     return {
       document: action.payload,
+      isPending: false,
+      error: null,
+      success: true,
+    };
+  }
+
+  if (action.type === "DELETED_DOCUMENT") {
+    return {
+      document: null,
       isPending: false,
       error: null,
       success: true,
@@ -47,18 +56,8 @@ export const useFirestore = (collection) => {
   // Reducer \\
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
 
-  // States \\
-  const [isCancelled, serIsCancelled] = useState(false);
-
   // Collection Reference \\
   const reference = projectFirestore.collection(collection);
-
-  // Only Dispatch if Not Canceled \\
-  const dispatchIfNotCancelled = (action) => {
-    if (!isCancelled) {
-      dispatch(action);
-    }
-  };
 
   // Add a Document to Firebase Collection \\
   const addDocument = async (doc) => {
@@ -66,18 +65,27 @@ export const useFirestore = (collection) => {
     try {
       const createdAt = timestamp.fromDate(new Date());
       const addedDocument = await reference.add({ ...doc, createdAt });
-      dispatchIfNotCancelled({
+      dispatch({
         type: "ADDED_DOCUMENT",
         payload: addedDocument,
       });
     } catch (error) {
-      dispatchIfNotCancelled({ type: "ERROR", payload: error.message });
+      dispatch({ type: "ERROR", payload: error.message });
     }
   };
 
-  useEffect(() => {
-    return () => serIsCancelled(true);
-  }, []);
+  // Delete a Document from Firebase Collection \\
+  const deleteDocument = async (id) => {
+    dispatch({ type: "IS_PENDING" });
+    try {
+      await reference.doc(id).delete();
+      dispatch({
+        type: "DELETED_DOCUMENT",
+      });
+    } catch (error) {
+      dispatch({ type: "ERROR", payload: "Could not delete" });
+    }
+  };
 
-  return { response, addDocument };
+  return { response, addDocument, deleteDocument };
 };
