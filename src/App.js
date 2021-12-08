@@ -28,16 +28,16 @@ const App = () => {
           <Header />
           <Routes>
             <Route
-              path="/"
-              element={currentUser ? <Home /> : <Navigate to="/signin" />}
-            />
-            <Route
               path="/signin"
               element={!currentUser ? <Signin /> : <Navigate to="/" />}
             />
             <Route
               path="/signup"
               element={!currentUser ? <Signup /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/"
+              element={currentUser ? <Home /> : <Navigate to="/signin" />}
             />
             <Route
               path="/*"

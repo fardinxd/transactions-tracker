@@ -11,22 +11,19 @@ const TransactionList = ({ transactions }) => {
   // Delete Transaction With useFirestore Hook \\
   const { deleteDocument } = useFirestore("transactions");
 
-  // Date & Time \\
+  // Number To Currency Formatter \\
+  const numberToCurrency = (number) => {
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+    return formatter.format(Number(number));
+  };
+
+  // Seconds To Date & Time Formatter \\
   const dateAndTime = (seconds) => {
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+    // prettier-ignore
+    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
     let date = new Date(seconds * 1000).getDate(),
       monthIndex = new Date(seconds * 1000).getMonth(),
@@ -48,15 +45,6 @@ const TransactionList = ({ transactions }) => {
         </span>
       </React.Fragment>
     );
-  };
-
-  // Number To Currency Formatter \\
-  const numberToCurrency = (number) => {
-    const formatter = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-    return formatter.format(Number(number));
   };
 
   // JSX \\

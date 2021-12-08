@@ -21,8 +21,8 @@
   left: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--light-black);
-  box-shadow: rgba(var(--orange-rgb), 0.5) 0px 0px 5px 5px;
+  background-color: var(--color-nav);
+  box-shadow: var(--card-shadow);
   z-index: 200;
   overflow: hidden;
 }

@@ -1,6 +1,6 @@
 header {
-  background-color: var(--light-black);
-  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-nav);
+  box-shadow: var(--nav-shadow);
   position: sticky;
   top: 0;
   left: 0;
@@ -18,6 +18,7 @@ header {
     }
 
     .logo {
+      color: var(--color-primary);
       display: flex;
 
       @media screen and (max-width: 600px) {
@@ -26,7 +27,6 @@ header {
 
       svg {
         font-size: 5rem;
-        color: var(--orange);
 
         @media screen and (max-width: 600px) {
           font-size: 3.5rem;
@@ -42,21 +42,32 @@ header {
       &_item {
         font-weight: 700;
 
-        &:first-child {
+        &:not(:last-child) {
           margin-right: 2rem;
         }
 
-        &_name {
+        &_username {
           font-size: 1.5rem;
-          color: var(--orange);
+          color: var(--color-primary);
 
           @media screen and (max-width: 600px) {
             font-size: 1.3rem;
           }
 
           span {
-            color: var(--white);
-            margin-right: 6px;
+            color: var(--color-black);
+            margin-right: 0.6rem;
+          }
+        }
+
+        .mode {
+          font-size: 2.4rem;
+          padding: 0.6rem 0.8rem;
+          display: flex;
+
+          @media screen and (max-width: 600px) {
+            font-size: 2rem;
+            padding: 0.4rem 0.8rem;
           }
         }
       }

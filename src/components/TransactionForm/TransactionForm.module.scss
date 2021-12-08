@@ -1,9 +1,10 @@
-.transaction_form_container {
+.transaction {
   position: relative;
 
-  .btn {
-    background-color: var(--orange);
-    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.4);
+  &_btn {
+    background-color: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--card-shadow);
     border-radius: 3px;
     padding: 1rem;
     cursor: pointer;
@@ -35,67 +36,68 @@
       }
     }
   }
-}
 
-.transaction_form {
-  height: 100%;
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  &_heading {
-    text-align: center;
-    color: var(--orange);
-    margin-bottom: 2rem;
-  }
-
-  &_field {
-    margin-bottom: 2.5rem;
+  &_form {
+    height: 100%;
+    width: 95%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-
-    label {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-
-      @media screen and (max-width: 600px) {
-        font-size: 1.3rem;
-      }
-    }
-
-    input {
-      font: inherit;
-      font-size: 1.6rem;
-      height: 3.5rem;
-      padding: 0 0.5rem;
-      border: 2px solid var(--orange);
-      border-radius: 3px;
-
-      &:focus {
-        outline: 4px solid rgba(var(--orange-rgb), 0.5);
-      }
-    }
-  }
-
-  &_actions {
-    display: flex;
     justify-content: center;
 
-    div {
-      margin: 0 1rem;
-      border-color: var(--white);
+    &_heading {
+      text-align: center;
+      color: var(--color-primary);
+      margin-bottom: 2rem;
     }
 
-    button {
-      margin: 0 1rem;
-      color: var(--orange);
+    &_field {
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
 
-      &:hover {
-        @media screen and (min-width: 600px) {
-          background-color: var(--white);
+      label {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+
+        @media screen and (max-width: 600px) {
+          font-size: 1.3rem;
+        }
+      }
+
+      input {
+        font: inherit;
+        font-size: 1.6rem;
+        height: 3.5rem;
+        padding: 0 0.5rem;
+        border: 2px solid var(--color-primary);
+        border-radius: 3px;
+
+        &:focus {
+          outline: 4px solid rgba(var(--color-primary-rgb), 0.5);
+        }
+      }
+    }
+
+    &_actions {
+      display: flex;
+      justify-content: center;
+
+      div {
+        margin: 0 1rem;
+        border-color: inherit;
+      }
+
+      button {
+        margin: 0 1rem;
+        color: var(--color-primary);
+
+        &:hover {
+          @media screen and (min-width: 600px) {
+            color: var(--color-black);
+            border-color: var(--color-black);
+          }
         }
       }
     }

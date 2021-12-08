@@ -1,12 +1,12 @@
 main {
   .heading {
     text-align: center;
-    color: var(--orange);
+    color: var(--color-primary);
     margin: 2rem 0;
   }
 
   .signup_form {
-    background-color: var(--light-black);
+    background-color: var(--color-nav);
     max-width: 60rem;
     margin: 0 auto;
     padding: 1.5rem;
@@ -31,11 +31,11 @@ main {
         font-size: 1.6rem;
         height: 3.5rem;
         padding: 0 0.5rem;
-        border: 2px solid var(--orange);
+        border: 2px solid var(--color-primary);
         border-radius: 3px;
 
         &:focus {
-          outline: 4px solid rgba(var(--orange-rgb), 0.5);
+          outline: 4px solid rgba(var(--color-primary-rgb), 0.5);
         }
       }
     }
@@ -52,7 +52,11 @@ main {
     margin: 3rem 0;
 
     a {
-      color: var(--orange);
+      color: var(--color-primary);
+
+      @media screen and (max-width: 600px) {
+        cursor: default;
+      }
     }
   }
 }

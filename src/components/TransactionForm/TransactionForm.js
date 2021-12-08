@@ -12,7 +12,7 @@ import Modal from "./Modal";
 
 const TransactionForm = ({ uid }) => {
   // States \\
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [transactionName, setTransactionName] = useState("");
   const [transactionAmount, setTransactionAmount] = useState("");
 
@@ -38,21 +38,24 @@ const TransactionForm = ({ uid }) => {
     if (response.success) {
       setTransactionName("");
       setTransactionAmount("");
-      setShow(false);
+      setShowModal(false);
       window.scroll(0, 0);
     }
   }, [response.success]);
 
   // JSX \\
   return (
-    <div className={styles.transaction_form_container}>
-      <div className={styles.btn} onClick={() => setShow(true)}>
+    <div className={styles.transaction}>
+      <div
+        className={styles.transaction_btn}
+        onClick={() => setShowModal(true)}
+      >
         <span>Add New Transaction</span>
         <HiPlus />
       </div>
 
-      {show && (
-        <Modal setShow={setShow}>
+      {showModal && (
+        <Modal setShowModal={setShowModal}>
           <form className={styles.transaction_form} onSubmit={submitHandler}>
             <h1 className={styles.transaction_form_heading}>
               Add a Transaction
@@ -81,7 +84,7 @@ const TransactionForm = ({ uid }) => {
             </div>
 
             <div className={styles.transaction_form_actions}>
-              <div className="btn" onClick={() => setShow(false)}>
+              <div className="btn" onClick={() => setShowModal(false)}>
                 Cancel
               </div>
 
