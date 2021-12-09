@@ -1,5 +1,5 @@
 {
-  "name": "finance-tracker",
+  "name": "transactions-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

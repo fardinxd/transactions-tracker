@@ -55,7 +55,7 @@ const Signin = () => {
       </form>
 
       <p className={styles.paragraph}>
-        New to Finance Tracker? <Link to="/signup">Signup</Link>
+        New to Transactions Tracker? <Link to="/signup">Signup</Link>
       </p>
     </main>
   );
