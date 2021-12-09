@@ -3,12 +3,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCSrUvjX8O5WAqGOiPv1apoVCIB4HgK8-0",
-  authDomain: "finance-tracker-a82b4.firebaseapp.com",
-  projectId: "finance-tracker-a82b4",
-  storageBucket: "finance-tracker-a82b4.appspot.com",
-  messagingSenderId: "840140586794",
-  appId: "1:840140586794:web:7eec72c7c071f391c7a853",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Init Firebase \\
