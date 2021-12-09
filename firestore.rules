@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /transactions/{document=**} {
+      // Allow Create Only If User Is Loggedin \\
+      allow create: if request.auth != null;
+
+      // Allow Read & Delete If Loggedin User UID Is = Document UID \\
+      allow read, delete: if request.auth.uid == resource.data.uid;
+    }
+  }
+}
